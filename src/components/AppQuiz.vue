@@ -1,22 +1,19 @@
 <template>
-  <form
-    v-if="questions == null"
-    class="quiz-head"
-    @submit.prevent="getQuestions(questionСount)"
-  >
-    <label class="quiz-quantity-label" for="quiz-quantity">
-      Enter the number of questions:
-      <input
-        required
-        id="quiz-quantity"
-        type="number"
-        v-model="questionСount"
-        min="1"
-      />
-    </label>
-    <button>Start</button>
-  </form>
-
+  <base-card v-if="questions == null">
+    <form class="quiz-head" @submit.prevent="getQuestions(questionСount)">
+      <label class="quiz-quantity-label" for="quiz-quantity">
+        Enter the number of questions:
+        <input
+          required
+          id="quiz-quantity"
+          type="number"
+          v-model="questionСount"
+          min="1"
+        />
+      </label>
+      <button>Start</button>
+    </form>
+  </base-card>
   <div class="quiz-body-wrapper">
     <div class="quiz-body" v-for="(question, index) in questions" :key="index">
       <app-quiz-question
@@ -37,7 +34,9 @@
 <script>
 import AppQuizQuestion from './AppQuizQuestion.vue'
 import AppQuizResults from './AppQuizResults.vue'
-import { getQuizQuestions } from '../Utils/Api.js'
+import BaseCard from '../components/ui/BaseCard.vue'
+
+import { getQuizQuestions } from '../utils/Api.js'
 
 export default {
   data () {
@@ -50,7 +49,8 @@ export default {
   },
   components: {
     AppQuizQuestion,
-    AppQuizResults
+    AppQuizResults,
+    BaseCard
   },
   methods: {
     async getQuestions (count) {
@@ -75,10 +75,6 @@ export default {
   flex-direction: column;
   align-items: center;
   row-gap: 20px;
-  width: 40vw;
-  box-shadow: 0 0 5px;
-  margin: 20px;
-  padding: 20px;
 }
 
 .quiz-head button {

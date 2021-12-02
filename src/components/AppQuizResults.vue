@@ -1,8 +1,11 @@
 <template>
-  <div class="quiz-results">User Score: {{ showUserScore }}</div>
+  <base-card>
+    <div class="quiz-results">User Score: {{ showUserScore }}</div>
+  </base-card>
 </template>
 
 <script>
+import BaseCard from '../components/ui/BaseCard.vue'
 export default {
   props: {
     correctScore: {
@@ -15,13 +18,11 @@ export default {
     showUserScore () {
       return this.correctScore
     }
+  },
+  components: {
+    BaseCard
   }
 }
 </script>
 
-<style scoped>
-.quiz-results {
-  box-shadow: 0 0 5px;
-  padding: 10px;
-}
-</style>
+<style scoped></style>

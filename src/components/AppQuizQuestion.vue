@@ -4,18 +4,20 @@
       {{ QuizQuestion.category }}
     </h3>
     <p v-html="QuizQuestion.question"></p>
-    <div
+    <base-answer-card
       class="answers"
       @click="sendAnswer(answer), nextQuestion(), checkQuestionAnswer(answer)"
       v-html="answer"
       v-for="(answer, index) in getFullAnswers"
       :key="index"
-    ></div>
+    ></base-answer-card>
   </div>
 </template>
 
 <script>
-import { sendQuizAnswer } from '../Utils/Api.js'
+import { sendQuizAnswer } from '../utils/Api.js'
+import BaseAnswerCard from '../components/ui/BaseAnswerCard.vue'
+
 export default {
   data () {
     return {
@@ -23,6 +25,9 @@ export default {
       QuestionNumber: this.questionNumber,
       UserAnswer: null
     }
+  },
+  components: {
+    BaseAnswerCard
   },
   props: {
     question: {
@@ -77,12 +82,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.answers {
-  border: 1px solid gray;
-  margin: 5px;
-  min-width: 20vh;
-  cursor: pointer;
-}
+
 .answers:hover {
   background-color: lightblue;
 }
