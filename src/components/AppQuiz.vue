@@ -55,7 +55,6 @@ export default {
     async getQuestions (count) {
       const array = await getQuizQuestions(count)
       this.questions = array.results
-      console.table(array)
     },
     addToCounter () {
       this.questionNumber++
