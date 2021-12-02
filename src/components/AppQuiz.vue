@@ -11,6 +11,7 @@
         id="quiz-quantity"
         type="number"
         v-model="questionСount"
+        min="1"
       />
     </label>
     <button>Start</button>
