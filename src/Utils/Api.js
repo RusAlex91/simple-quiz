@@ -4,7 +4,10 @@ export async function getQuizQuestions (quantity) {
     amount: quantity
   })
 
-  const response = await fetch(url)
+  const response = await fetch(url).catch(error => {
+    // error handler
+    console.log(error)
+  })
   const data = await response.json()
   return data
 }
@@ -17,6 +20,9 @@ export async function sendQuizAnswer (answerData) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ answer: answerData })
+  }).catch(error => {
+    // error handler
+    console.log(error)
   })
   const content = await rawResponse.json()
 
